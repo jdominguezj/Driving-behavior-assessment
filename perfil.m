@@ -5,6 +5,7 @@ clear, clc
 % v = VideoReader('2019-02-13 16-33-19.flv'); %start 10 seconds finish 184
 % v = VideoReader('2019-02-14 10-30-48.flv');  %start 88 seconds finish 236
 %v = VideoReader('2019-02-14 15-00-22.flv');  %start 33 seconds finihs 94
+tic
 v = VideoReader('2019-02-14 15-55-12.flv');  %start 14 finish 596
  
 
@@ -17,7 +18,7 @@ load digits.mat
 %Start and end of the  video
 
 start=14*30;
-finish=596*30;
+finish=164*30;
 
 %perfilv = zeros(1,length(840:6600));
 %perfilv = zeros(1,length(300:5520));
@@ -31,7 +32,7 @@ t=start/30:1/30:finish/30
 n = 0;
 
 figure
-for iFrame=14*30:596*30
+for iFrame=start:finish
     n = n+1;
     
     framec = rgb2gray(read(v, iFrame));
@@ -115,21 +116,22 @@ form='%10.2f,%10.2f;';
 sprintf(form,fv')
 sprintf(form,vf')
 
-%%
-%Braking bar crop
-vr = [260.5 648.5 3 34];
-
-%Creating vector for brake pressure
-sumas = zeros(1,length(start:finish));
-n = 0;
-
-for iFrame = start:finish
-    n = n+1;
-    frame = rgb2gray(read(f, iFrame));
-    framec = imcrop(frame, vr);
-    frameb = framec>80;
-    sumas(n) = sum(frameb(:))/140;
-end
-
-%Braking pressure along time
-figure, plot(t,sumas)
+toc
+% %%
+% %Braking bar crop
+% vr = [260.5 648.5 3 34];
+% 
+% %Creating vector for brake pressure
+% sumas = zeros(1,length(start:finish));
+% n = 0;
+% 
+% for iFrame = start:finish
+%     n = n+1;
+%     frame = rgb2gray(read(f, iFrame));
+%     framec = imcrop(frame, vr);
+%     frameb = framec>80;
+%     sumas(n) = sum(frameb(:))/140;
+% end
+% 
+% %Braking pressure along time
+% figure, plot(t,sumas)
