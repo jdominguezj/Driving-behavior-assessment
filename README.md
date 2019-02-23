@@ -1,4 +1,4 @@
-# Driving-behavior-assessment
+# Driving behavior assessment
 
 A repository of an on course project. This project attempts to assess driving behavior impact on electric vehicles from physiological signals.
 
